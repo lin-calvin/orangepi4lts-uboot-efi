@@ -1,0 +1,22 @@
+# Build output
+build/
+out/
+
+# Local firmware backups (Tow-Boot/OS images, not part of this project)
+backup/
+
+# Rockchip blobs are downloaded by build.sh/flash.sh, not redistributed here
+vendor/rkbin/*
+!vendor/rkbin/README.md
+
+# Images and binaries
+*.img
+*.bin
+*.elf
+*.dtb
+*.xz
+*.log
+
+# Editor/OS noise
+.DS_Store
+*.swp

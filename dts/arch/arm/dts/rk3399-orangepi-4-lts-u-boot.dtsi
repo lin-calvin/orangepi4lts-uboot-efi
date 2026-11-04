@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: GPL-2.0+
+
+#include "rk3399-u-boot.dtsi"
+
+/*
+ * OPI4 LTS uses Rockchip's out-of-tree "typec-extcon" glue in the
+ * Armbian/vendor DTS.  Mainline has no driver for it, which leaves
+ * u2phy0/tcphy0/fusb302/dwc3 permanently deferred.  For USB ACM we do
+ * not need Type-C role switching: force DWC3 to peripheral, use the
+ * USB2 OTG PHY only, and take the Type-C/DP/USB3 path out of the
+ * dependency chain.
+ */
+&u2phy0 {
+	status = "okay";
+	/delete-property/ extcon;
+};
+
+&u2phy0_otg {
+	status = "okay";
+};
+
+&tcphy0 {
+	status = "disabled";
+};
+
+&usbdrd3_0 {
+	status = "okay";
+	/delete-property/ extcon;
+};
+
+&usbdrd_dwc3_0 {
+	status = "okay";
+	dr_mode = "peripheral";
+	maximum-speed = "high-speed";
+	phys = <&u2phy0_otg>;
+	phy-names = "usb2-phy";
+	/delete-property/ extcon;
+	/delete-property/ usb-role-switch;
+	/delete-property/ snps,usb3-phy-reset-quirk;
+};
+
+&fusb0 {
+	status = "disabled";
+};
+
+&cdn_dp {
+	status = "disabled";
+};
+
+&gpio0 {
+	bootph-pre-ram;
+};
+
+&sdmmc_pwr {
+	bootph-pre-ram;
+};
+
+&vcc3v0_sd {
+	bootph-pre-ram;
+};
+
+&vdd_log {
+	regulator-init-microvolt = <950000>;
+};

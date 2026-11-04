@@ -1,0 +1,40 @@
+Orange Pi 4 LTS U-Boot EFI firmware
+===================================
+
+Copyright (C) 2026 calvinweb and contributors.
+
+Unless otherwise stated, the original scripts, documentation and DTS
+modifications in this repository are licensed under the GNU General
+Public License, version 3 or (at your option) any later version.
+See LICENSE.
+
+Third-party components
+----------------------
+
+1. U-Boot
+   License: GPL-2.0-or-later
+   Source:  https://u-boot.org/
+   U-Boot is downloaded at build time by scripts/build.sh.  The built
+   image contains U-Boot code; redistribution must comply with GPL-2.0+.
+
+2. Armbian Orange Pi 4 LTS defconfig and DTS
+   License: GPL-2.0+ / MIT (see the headers of the files in configs/
+            and dts/)
+   Source:  https://github.com/armbian/build
+   The board DTS is derived from Armbian's OPI4 LTS device tree.  The
+   U-Boot-specific overrides added by this project are GPL-3.0-or-later.
+
+3. Rockchip rkbin binaries
+   Files:   rk3399_bl31_v1.36.elf
+            rk3399_ddr_933MHz_v1.30.bin
+            rk3399_loader_v1.20.119.bin (flash loader, from Radxa)
+   License: Rockchip proprietary terms; NOT GPL.
+   These files are not committed to this repository.  scripts/build.sh
+   and scripts/flash.sh download them from their upstream locations.
+   They are required to build/flash the firmware but are not part of
+   the GPL-covered source.
+
+4. Built firmware images
+   out/u-boot-rockchip.bin contains U-Boot (GPL-2.0+), TF-A BL31 and
+   DDR init (Rockchip terms).  If you redistribute it, keep this NOTICE
+   and the corresponding source available.
