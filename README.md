@@ -7,6 +7,16 @@ eMMC。U-Boot 打开 UEFI loader / boot manager 后，可以启动
 本项目已在 Orange Pi 4 LTS（RK3399，16GB eMMC）上实际启动 Armbian 验证。
 TF 卡槽损坏不影响 eMMC 启动。
 
+## 下载
+
+预编译固件在 GitHub Releases：
+
+<https://github.com/lin-calvin/orangepi4lts-uboot-efi/releases>
+
+发布包包含 `u-boot-rockchip.bin`、`idbloader.img`、`u-boot.itb`、
+`u-boot.dtb` 和 `SHA256SUMS`。刷写前请确认 eMMC 有 12 MiB 固件区，
+见下面的“eMMC 布局”。
+
 ## 当前状态
 
 - U-Boot：`2026.10-rc5`
